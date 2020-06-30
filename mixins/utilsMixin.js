@@ -1,4 +1,3 @@
-const APIURL = "https://newsapi.org/v2";
 export const DEF_COUNTRY = {
   code: "RU",
   name: "Russian Federation"
@@ -9,14 +8,14 @@ export const requests = {
     async getNews(country) {
       return await (
         await fetch(
-          `${APIURL}/top-headlines?country=${country}&apiKey=${process.env.API_KEY}`
+          `${process.env.API_URL}/top-headlines?country=${country}&apiKey=${process.env.API_KEY}`
         )
       ).json();
     },
     async getEverything(keyword) {
       return await (
         await fetch(
-          `${APIURL}/everything?q=${keyword}&apiKey=${process.env.API_KEY}`
+          `${process.env.API_URL}/everything?q=${keyword}&apiKey=${process.env.API_KEY}`
         )
       ).json();
     }

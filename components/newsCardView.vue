@@ -17,7 +17,7 @@
             </div>
             <div v-else>
               <img
-                src="/nophoto.png"
+                :src="noPhotoPath"
                 class="card-img-bottom"
                 alt="Sorry, not foto"
               />
@@ -42,7 +42,7 @@
 
     <div v-else>
       <div class="center">
-        <img class="card-img-bottom" src="/nonews.webp" />
+        <img class="card-img-bottom" :src="noNewsPath" />
       </div>
     </div>
   </div>
@@ -63,7 +63,18 @@ export default {
   beforeMount() {
     this.getNewsByCountry();
   },
-
+  computed: {
+    noPhotoPath() {
+      return process.env.NODE_ENV === "development"
+        ? "/nophoto.png"
+        : process.env.BASE_URL + "/nophoto.png";
+    },
+    noNewsPath() {
+      return process.env.NODE_ENV === "development"
+        ? "/nonews.webp"
+        : process.env.BASE_URL + "/nonews.webp";
+    }
+  },
   methods: {
     async getNewsByCountry() {
       const data = await this.getNews(

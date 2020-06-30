@@ -27,7 +27,14 @@ export default {
       }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href:
+          process.env.NODE_ENV === "development"
+            ? "/favicon.ico"
+            : process.env.BASE_URL + "/favicon.ico"
+      },
       {
         rel: "stylesheet",
         href:
