@@ -84,7 +84,8 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    publicPath: "http://localhost/news",
+    publicPath: process.env.BASE_URL || "",
+
     extend(config, ctx) {}
   },
   env: {
