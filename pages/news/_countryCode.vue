@@ -7,4 +7,3 @@ export default {
   components: { newCardView }
 };
 </script>
-<style></style>

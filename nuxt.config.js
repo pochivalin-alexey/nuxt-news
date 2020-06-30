@@ -1,9 +1,11 @@
+const { getData } = require("country-list");
+
 export default {
   /*
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
-  mode: "universal",
+  mode: "spa",
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
@@ -75,10 +77,11 @@ export default {
     /*
      ** You can extend webpack config here
      */
+    publicPath: "http://localhost/news",
     extend(config, ctx) {}
   },
   env: {
-    apiKey: process.env.API_KEY || "4d56732aff574de7ac9cba307612b153"
+    apiKey: process.env.API_KEY || ""
   },
   router: {
     routes: [
@@ -88,15 +91,15 @@ export default {
         component: "pages/index.vue"
       },
       {
-        name: "headlines-id",
-        path: "/headlines/:countryCode?",
-        component: "pages/headlines/_countryCode.vue"
+        name: "news-id",
+        path: "/news/:countryCode?",
+        component: "pages/news/_countryCode.vue"
       }
     ]
   },
   generate: {
     routes() {
-      return getData().map(d => `headlines/${d.code}`);
+      return getData().map(d => `news/${d.code}`);
     }
   }
 };
